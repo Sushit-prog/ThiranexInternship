@@ -310,5 +310,3 @@ Thiranex Internship Program 2026 — Data Science & AI Track
   Built with 🔴 and lots of data — Thiranex Internship 2026
 </p>
 ---
-
-## 🗂️ Repository Structure
