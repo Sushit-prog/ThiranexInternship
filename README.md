@@ -1,36 +1,124 @@
-# 🫀 Heart Disease Risk Prediction
-### End-to-End Data Science Pipeline — Healthcare Domain
+# 📊 Data Science Internship Projects
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Pandas-Data%20Analysis-150458?style=for-the-badge&logo=pandas&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white"/>
+  <img src="https://img.shields.io/badge/XGBoost-Gradient%20Boosting-189AB4?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/SHAP-Explainability-FF6B6B?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Seaborn-Visualization-4C72B0?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge"/>
+</p>
 
-![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat&logo=python&logoColor=white)
-![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-1.x-F7931E?style=flat&logo=scikitlearn&logoColor=white)
-![XGBoost](https://img.shields.io/badge/XGBoost-Gradient%20Boosting-189AB4?style=flat)
-![SHAP](https://img.shields.io/badge/SHAP-Explainability-FF6B6B?style=flat)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat)
+<p align="center">
+  <b>Thiranex Skill Development & Future Tech Internship Program — 2026</b><br/>
+  <i>Data Science & AI Track</i>
+</p>
 
 ---
 
 ## 📌 Overview
 
-This project builds a full machine learning pipeline to predict the presence of **heart disease** in patients using 13 routine clinical measurements. It covers the complete data science workflow — from raw data ingestion and exploratory analysis to model training, evaluation, and explainability — applied to one of the most studied clinical datasets in ML research.
+This repository contains all four internship tasks completed as part of the **Thiranex Data Science & AI Internship Program 2026**. The work spans two real-world domains — **Entertainment (Netflix)** and **Healthcare (Cardiovascular Risk)** — covering the complete data science workflow: data cleaning, exploratory analysis, machine learning, and model explainability.
 
-> **Clinical Motivation:** Cardiovascular disease is the #1 cause of death globally (~17.9 million deaths/year, WHO). Early risk stratification using routine lab and ECG data can meaningfully reduce this burden by enabling targeted intervention before symptoms escalate.
+| Task | Domain | Description | Status |
+|---|---|---|---|
+| Task 1 | 🎬 Netflix | Data Cleaning, Feature Engineering & Dashboard | ✅ Completed |
+| Task 2 | 🎬 Netflix | ML Classification — Kids vs Adult Content | ✅ Completed |
+| Task 3 | 🎬 Netflix | Exploratory Data Analysis & Statistical Insights | ✅ Completed |
+| Task 4 | 🫀 Healthcare | Real-World ML Project — Heart Disease Prediction | ✅ Completed |
 
 ---
 
-## 📂 Project Structure
+## 📂 Repository Structure
 
-```
-heart-disease-prediction/
+```text
+thiranex-internship-2026/
 │
-├── heart_disease_prediction.ipynb   # Main notebook (run this)
-├── README.md                        # Project documentation
-└── requirements.txt                 # Python dependencies
+├── netflix/
+│   ├── Task1.ipynb                        # Cleaning, EDA, Dashboard
+│   ├── Task2.ipynb                        # ML Classification
+│   ├── Task3.ipynb                        # Statistical Analysis
+│   └── netflix_titles.csv                 # Dataset
+│
+├── heart_disease/
+│   └── heart_disease_prediction.ipynb     # End-to-end ML pipeline
+│
+└── README.md
 ```
 
 ---
 
-## 📊 Dataset
+<br/>
+
+# 🎬 Tasks 1–3 — Netflix Data Science
+
+## 📂 Dataset
+
+| Property | Details |
+|---|---|
+| **Source** | Netflix Movies and TV Shows (Kaggle) |
+| **Records** | 8,807 titles |
+| **Content Types** | Movies & TV Shows |
+| **Time Range** | 2008–2021 |
+
+---
+
+## Task 1 — Data Cleaning, Feature Engineering & Dashboard
+
+### What Was Done
+- Handled missing values and duplicate records across 12 columns
+- Engineered new date-based and duration-based features
+- Built a multi-panel visualization dashboard for Netflix content trends
+- Analyzed ratings, genres, countries, and release patterns
+
+### Key Insights
+- Movies account for nearly **70%** of all Netflix content
+- **USA** leads global content production by a wide margin
+- Significant content growth spike after **2015**
+- **TV-MA** is the most prevalent content rating on the platform
+
+---
+
+## Task 2 — Predictive Modeling (Kids vs Adult Classification)
+
+### Objective
+Classify Netflix titles as **Kids** or **Adult** content using machine learning based on title metadata and rating features.
+
+### Models Evaluated
+
+| Model | Accuracy |
+|---|---|
+| Logistic Regression | 61.0% |
+| Decision Tree | 81.8% |
+| **Random Forest** | **85.7%** |
+
+**Best Model:** Random Forest — selected for its ability to handle non-linear decision boundaries and categorical feature interactions.
+
+---
+
+## Task 3 — Exploratory Data Analysis & Statistical Insights
+
+### Analysis Performed
+- Statistical summaries across all features
+- Pearson correlation analysis
+- Outlier detection on runtime and release year
+- Distribution analysis for movies vs TV shows
+- Content trend and growth pattern discovery
+
+### Major Findings
+- Netflix experienced its fastest content growth between **2015–2019**
+- Movie runtimes follow a roughly **normal distribution** (~90–100 min mean)
+- Most TV Shows run for only **one season** — reflecting an acquisition-heavy strategy
+- **Mature-audience content** (TV-MA, R) dominates the platform catalog
+
+---
+
+<br/>
+
+# 🫀 Task 4 — Heart Disease Risk Prediction
+### Real-World Data Project (Healthcare Domain)
+
+## 📂 Dataset
 
 | Property | Details |
 |---|---|
@@ -41,7 +129,9 @@ heart-disease-prediction/
 | **Target** | Binary (1 = Heart Disease, 0 = No Disease) |
 | **Class Balance** | ~54% disease / 46% healthy — well balanced |
 
-### Feature Description
+> **Clinical Motivation:** Cardiovascular disease kills approximately 17.9 million people per year (WHO). Early, data-driven risk stratification using routine clinical tests can meaningfully reduce this burden.
+
+### Feature Reference
 
 | Feature | Type | Description |
 |---|---|---|
@@ -56,58 +146,42 @@ heart-disease-prediction/
 | `exang` | Binary | Exercise-induced angina |
 | `oldpeak` | Continuous | ST depression (exercise vs rest) |
 | `slope` | Ordinal | Slope of peak exercise ST segment |
-| `ca` | Ordinal | Number of major vessels (0–3) |
+| `ca` | Ordinal | Number of major vessels colored (0–3) |
 | `thal` | Categorical | Thalassemia type |
 | `target` | Binary | **Heart disease present ← label** |
 
 ---
 
-## 🔬 Methodology
+## Methodology
 
-### 1. Exploratory Data Analysis
-- Target class distribution and balance check
-- Distribution plots of all continuous features, split by disease status
-- Categorical feature disease-rate analysis
-- Pearson correlation heatmap and target-correlation ranking
-- Clinical scatter plot: Age vs Max Heart Rate
+### Feature Engineering
+Five new clinically-motivated features derived from existing measurements:
 
-### 2. Feature Engineering
-Five new clinically-motivated features are derived:
-
-| Feature | Derivation | Rationale |
+| Feature | Derivation | Clinical Rationale |
 |---|---|---|
-| `age_group` | Age bucketed into 4 risk tiers | Clinical protocols stratify risk by decade |
-| `hr_reserve` | `(220 - age) - thalach` | Unused cardiac capacity; low reserve = poor fitness |
-| `silent_ischemia` | Flag for `cp == 0` | Asymptomatic presentation is paradoxically highest risk |
-| `hypertension` | Flag for `trestbps >= 140` | Stage-2 hypertension is a primary cardiovascular risk factor |
+| `age_group` | Age bucketed into 4 risk tiers | Clinical risk stratification by decade |
+| `hr_reserve` | `(220 - age) - thalach` | Unused cardiac capacity; low = poor fitness |
+| `silent_ischemia` | Flag for `cp == 0` | Asymptomatic patients carry paradoxically high risk |
+| `hypertension` | Flag for `trestbps >= 140` | Stage-2 hypertension is a primary risk factor |
 | `st_risk` | `oldpeak × slope` | Composite ST-segment severity score |
 
-### 3. Models Trained
+### Models Trained
 
-All models are wrapped in **sklearn Pipelines** (StandardScaler → Classifier) to prevent data leakage during cross-validation.
+All models use **sklearn Pipelines** (StandardScaler → Classifier) to prevent data leakage during cross-validation.
 
 | Model | Notes |
 |---|---|
 | Logistic Regression | Interpretable linear baseline |
-| Random Forest | Non-linear ensemble, robust to outliers |
-| XGBoost | Gradient boosting; state-of-the-art for tabular data |
+| Random Forest | Non-linear ensemble, built-in feature importance |
+| XGBoost | Gradient boosting; best-in-class for tabular data |
 
-### 4. Evaluation
-- 5-Fold Stratified Cross-Validation (AUC-ROC)
-- Test set: Accuracy, F1-Score, AUC-ROC
-- ROC curves (all models overlaid)
-- Confusion matrices
-- Per-class classification report
-
-### 5. Explainability
-- **Random Forest Gini importance** — global feature ranking
-- **SHAP TreeExplainer (XGBoost)** — beeswarm summary plot + mean impact bar chart
+### Explainability
+- **Random Forest Gini Importance** — global feature ranking
+- **SHAP TreeExplainer (XGBoost)** — per-prediction attribution with direction and magnitude
 
 ---
 
-## 🏆 Results
-
-> Exact values depend on your environment. Typical results on this dataset:
+## Results
 
 | Model | Test Accuracy | F1-Score | AUC-ROC |
 |---|---|---|---|
@@ -115,83 +189,62 @@ All models are wrapped in **sklearn Pipelines** (StandardScaler → Classifier) 
 | Random Forest | ~0.87 | ~0.88 | ~0.92 |
 | **XGBoost** | **~0.90** | **~0.90** | **~0.93** |
 
-XGBoost consistently achieves the highest AUC-ROC and is the recommended model.
+**Best Model:** XGBoost — recommended for any downstream deployment.
 
 ---
 
-## 🔍 Key Findings
+## Key Findings
 
-- **Chest pain type (`cp`)** is the strongest predictor. Asymptomatic patients (`cp=0`) show paradoxically high disease rates — a phenomenon known as *silent ischemia*.
-- **Max heart rate (`thalach`)** is significantly lower in disease patients, reflecting reduced cardiovascular reserve.
-- **Number of blocked vessels (`ca`)** provides direct anatomical evidence of coronary artery disease.
-- **ST depression (`oldpeak`)** is a well-validated ECG ischemia marker and a top SHAP driver.
-- The engineered **`hr_reserve`** feature adds meaningful predictive signal beyond the original 13 features.
+- **Chest pain type (`cp`)** is the strongest predictor. Asymptomatic patients (`cp=0`) have paradoxically the *highest* disease rates — silent ischemia
+- **Max heart rate (`thalach`)** is significantly lower in disease patients, reflecting reduced cardiovascular reserve
+- **Vessel blockages (`ca`)** provide direct anatomical evidence of coronary artery disease
+- **ST depression (`oldpeak`)** is a well-validated ECG ischemia marker and a top SHAP driver
+- The engineered **`hr_reserve`** feature adds meaningful predictive signal beyond the original 13 features
+
+---
+
+<br/>
+
+## 🛠️ Tech Stack
+
+| Category | Libraries |
+|---|---|
+| **Data Manipulation** | Pandas, NumPy |
+| **Visualization** | Matplotlib, Seaborn |
+| **Machine Learning** | Scikit-Learn, XGBoost |
+| **Explainability** | SHAP |
+| **Statistical Analysis** | SciPy |
+| **Environment** | Jupyter Notebook, Google Colab |
 
 ---
 
 ## ⚙️ Setup & Usage
 
-### Requirements
-```
-numpy
-pandas
-matplotlib
-seaborn
-scikit-learn
-xgboost
-shap
-jupyter
-```
-
-Install all dependencies:
 ```bash
+# Clone the repository
+git clone https://github.com/Sushit-prog/thiranex-internship-2026.git
+cd thiranex-internship-2026
+
+# Install dependencies
 pip install -r requirements.txt
+
+# Launch Jupyter
+jupyter notebook
 ```
 
-### Run the Notebook
-```bash
-git clone https://github.com/Sushit-prog/heart-disease-prediction.git
-cd heart-disease-prediction
-jupyter notebook heart_disease_prediction.ipynb
-```
-
-> The notebook downloads the dataset automatically from a public URL — no manual download needed. XGBoost and SHAP are also installed automatically on first run if not present.
+> Task 4 downloads the dataset automatically and installs XGBoost + SHAP on first run — no manual setup needed.
 
 ---
 
-## 🚀 Potential Extensions
+## 👤 Author
 
-- Hyperparameter optimization with **Optuna** (Bayesian search)
-- Ensemble stacking with a Logistic Regression meta-learner
-- Probability calibration (Platt scaling) for clinical risk thresholds
-- SMOTE oversampling for larger, imbalanced production datasets
-- REST API deployment via **FastAPI + Docker**
-- Production drift monitoring with **Evidently AI**
+**Sushit**  
+Thiranex Skill Development & Future Tech Internship Program 2026 — Data Science & AI Track  
+GitHub: [@Sushit-prog](https://github.com/Sushit-prog)
 
 ---
 
-## ⚠️ Limitations
-
-- Small dataset (303 patients) — real clinical deployment requires 10,000+ records
-- Single-centre bias (Cleveland Clinic) — may not generalize across demographics
-- Cross-sectional data only — no longitudinal follow-up
-- Missing confounders (BMI, smoking history, family history, medications)
-
----
-
-## 📚 References
-
-- Detrano, R. et al. (1989). *International application of a new probability algorithm for the diagnosis of coronary artery disease.* American Journal of Cardiology.
-- UCI ML Repository: [Heart Disease Dataset](https://archive.ics.uci.edu/ml/datasets/heart+disease)
-- Lundberg, S. M., & Lee, S. I. (2017). *A Unified Approach to Interpreting Model Predictions.* NeurIPS.
-- WHO Cardiovascular Disease Fact Sheet (2023): [who.int](https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds))
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
-<p align="center">Built as part of a Data Science internship project | Domain: Healthcare</p>
+<p align="center">
+A complete internship portfolio spanning two real-world domains — Entertainment & Healthcare —<br/>
+covering data cleaning, EDA, machine learning, and model explainability.
+</p>
