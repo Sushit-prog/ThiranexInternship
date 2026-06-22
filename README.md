@@ -1,312 +1,197 @@
-# 🎬 Netflix Data Science Project — Full Analysis Suite
+# 🫀 Heart Disease Risk Prediction
+### End-to-End Data Science Pipeline — Healthcare Domain
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge&logo=python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Pandas-Data%20Analysis-150458?style=for-the-badge&logo=pandas&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Seaborn-Visualization-4C72B0?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Google%20Colab-Notebooks-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge"/>
-</p>
-
-<p align="center">
-  <b>Thiranex Skill Development & Future Tech Internship Program — 2026</b><br/>
-  Three end-to-end Data Science tasks on the Netflix Movies & TV Shows dataset
-</p>
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat&logo=python&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.x-F7931E?style=flat&logo=scikitlearn&logoColor=white)
+![XGBoost](https://img.shields.io/badge/XGBoost-Gradient%20Boosting-189AB4?style=flat)
+![SHAP](https://img.shields.io/badge/SHAP-Explainability-FF6B6B?style=flat)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat)
 
 ---
 
-## 📌 Project Overview
+## 📌 Overview
 
-This repository contains three complete Data Science projects built on the
-**Netflix Movies and TV Shows** dataset (Kaggle, 8,807 titles). Each task
-progressively deepens the analysis — from raw data cleaning to machine learning
-classification — demonstrating a full data science workflow on a single,
-real-world dataset.
+This project builds a full machine learning pipeline to predict the presence of **heart disease** in patients using 13 routine clinical measurements. It covers the complete data science workflow — from raw data ingestion and exploratory analysis to model training, evaluation, and explainability — applied to one of the most studied clinical datasets in ML research.
 
-| Task | Title | Type | Status |
-|------|-------|------|--------|
-| 01 | Data Cleaning & Visualization | Data Engineering + Dashboarding | ✅ Completed |
-| 02 | Predictive Modeling | Machine Learning Classification | ✅ Completed |
-| 03 | Exploratory Data Analysis | Statistical Analysis + Reporting | ✅ Completed |
+> **Clinical Motivation:** Cardiovascular disease is the #1 cause of death globally (~17.9 million deaths/year, WHO). Early risk stratification using routine lab and ECG data can meaningfully reduce this burden by enabling targeted intervention before symptoms escalate.
 
 ---
 
-## 📂 Dataset
+## 📂 Project Structure
 
-| Property | Detail |
-|----------|--------|
-| **Source** | [Kaggle — Netflix Movies and TV Shows](https://www.kaggle.com/datasets/shivamb/netflix-shows) |
-| **Raw Shape** | 8,807 rows × 12 columns |
-| **Cleaned Shape** | 8,804 rows × 17 columns |
-| **Content Types** | Movies & TV Shows |
-| **Time Range** | 2008 – 2021 |
-| **Coverage** | 748 countries, 42 genres, 4,528 directors |
-
-netflix-data-science/
+```
+heart-disease-prediction/
 │
-├── 📓 Task1.ipynb                  # Data Cleaning & Dashboard
-├── 📓 Task2.ipynb                  # Predictive Modeling (ML)
-├── 📓 Task3.ipynb                  # EDA & Statistical Analysis
-│
-├── 📊 netflix_dashboard.png        # Task 1 — 7-panel dashboard
-├── 📊 task2_model_dashboard.png    # Task 2 — Model evaluation dashboard
-├── 📊 eda_correlation_heatmap.png  # Task 3 — Correlation heatmap
-├── 📊 eda_outlier_boxplots.png     # Task 3 — Outlier boxplots
-├── 📊 eda_distributions.png        # Task 3 — Distribution charts
-├── 📊 eda_patterns.png             # Task 3 — Deep pattern analysis
-│
-├── 📄 netflix_titles.csv           # Raw dataset
-└── 📝 README.md                    # This file
-
----
-
-## 📋 Task 1 — Data Cleaning & Visualization
-
-### Objective
-Clean a raw Netflix dataset, handle all data quality issues, engineer
-new features, and present findings through a professional dark-themed dashboard.
-
-### Data Cleaning Pipeline
-
-| Column | Issue | Strategy |
-|--------|-------|----------|
-| `director` | 2,634 missing | Filled → `'Unknown'` |
-| `cast` | 825 missing | Filled → `'No Cast Info'` |
-| `country` | 831 missing | Filled → Mode |
-| `date_added` | 10 missing | Filled → Mode |
-| `rating` | 4 missing | Filled → Mode |
-| `duration` | 3 missing | Rows dropped |
-| Duplicates | 3 found | Removed |
-
-### Feature Engineering
-
-| New Feature | Source | Purpose |
-|-------------|--------|---------|
-| `year_added` | `date_added` | Trend analysis |
-| `month_added` | `date_added` | Seasonal patterns |
-| `month_name` | `date_added` | Human-readable labels |
-| `duration_value` | `duration` | Numeric duration |
-| `duration_unit` | `duration` | min vs seasons |
-
-### Dashboard
-
-![Netflix Dashboard](netflix_dashboard.png)
-
-| Panel | Chart | Insight |
-|-------|-------|---------|
-| 1 | Pie Chart | 69.6% Movies vs 30.4% TV Shows |
-| 2 | Bar Chart | USA leads content production |
-| 3 | Line Chart | Explosive growth post-2015 |
-| 4 | Bar Chart | TV-MA is most common rating |
-| 5 | Bar Chart | International Movies is #1 genre |
-| 6 | Histogram | Movies average 99 min runtime |
-| 7 | Heatmap | July & December peak content drops |
-
----
-
-## 🤖 Task 2 — Predictive Modeling (ML Classification)
-
-### Objective
-Build and evaluate multiple machine learning models to classify Netflix
-titles as **Kids** or **Adult** content based on content features —
-a real-world content moderation problem.
-
-### Target Variable
-Kids  (0) → Ratings: TV-Y, TV-Y7, TV-Y7-FV, G, PG, TV-G, TV-PG
-Adult (1) → Ratings: TV-MA, TV-14, R, NR, NC-17, UR
-### Class Distribution
-| Class | Count | Percentage |
-|-------|-------|------------|
-| Adult | 6,746 | 76.6% |
-| Kids | 2,058 | 23.4% |
-
-> **Note:** Class imbalance handled using `class_weight='balanced'`
-> across all models.
-
-### Feature Set
-```python
-features = [
-    'type_encoded',    # Movie or TV Show
-    'country_encoded', # Top 10 countries + Other
-    'genre_encoded',   # Top 15 genres + Other
-    'year_added',      # Year content was added
-    'month_added',     # Month content was added
-    'duration_value',  # Runtime in minutes or seasons
-    'release_year'     # Original release year
-]
+├── heart_disease_prediction.ipynb   # Main notebook (run this)
+├── README.md                        # Project documentation
+└── requirements.txt                 # Python dependencies
 ```
 
-### Model Results
+---
 
-| Model | Accuracy | Kids F1 | Adult F1 |
-|-------|:--------:|:-------:|:--------:|
-| Logistic Regression | 61.04% | 0.46 | 0.69 |
-| Decision Tree | 81.83% | 0.64 | 0.88 |
-| **Random Forest** ✅ | **85.69%** | **0.66** | **0.91** |
+## 📊 Dataset
 
-### Model Evaluation Dashboard
+| Property | Details |
+|---|---|
+| **Name** | UCI Cleveland Heart Disease Dataset |
+| **Source** | [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/heart+disease) |
+| **Patients** | 303 |
+| **Features** | 13 clinical measurements |
+| **Target** | Binary (1 = Heart Disease, 0 = No Disease) |
+| **Class Balance** | ~54% disease / 46% healthy — well balanced |
 
-![Model Dashboard](task2_model_dashboard.png)
+### Feature Description
 
-### Key Takeaways
-- **Logistic Regression** struggled due to non-linear decision boundaries
-- **Decision Tree** captured genre and country-based rules effectively
-- **Random Forest** won with 86% accuracy — ensemble voting reduced overfitting
-- Kids F1 of **0.66** on a heavily imbalanced minority class is strong
+| Feature | Type | Description |
+|---|---|---|
+| `age` | Continuous | Age in years |
+| `sex` | Binary | 1 = Male, 0 = Female |
+| `cp` | Categorical | Chest pain type (0–3) |
+| `trestbps` | Continuous | Resting blood pressure (mmHg) |
+| `chol` | Continuous | Serum cholesterol (mg/dL) |
+| `fbs` | Binary | Fasting blood sugar > 120 mg/dL |
+| `restecg` | Categorical | Resting ECG results (0–2) |
+| `thalach` | Continuous | Maximum heart rate achieved (bpm) |
+| `exang` | Binary | Exercise-induced angina |
+| `oldpeak` | Continuous | ST depression (exercise vs rest) |
+| `slope` | Ordinal | Slope of peak exercise ST segment |
+| `ca` | Ordinal | Number of major vessels (0–3) |
+| `thal` | Categorical | Thalassemia type |
+| `target` | Binary | **Heart disease present ← label** |
 
 ---
 
-## 📊 Task 3 — Exploratory Data Analysis (EDA)
+## 🔬 Methodology
 
-### Objective
-Perform deep statistical analysis to uncover hidden patterns, correlations,
-and influencing factors across the Netflix dataset — going beyond charts
-into quantitative insights.
+### 1. Exploratory Data Analysis
+- Target class distribution and balance check
+- Distribution plots of all continuous features, split by disease status
+- Categorical feature disease-rate analysis
+- Pearson correlation heatmap and target-correlation ranking
+- Clinical scatter plot: Age vs Max Heart Rate
 
-### Analysis Phases
+### 2. Feature Engineering
+Five new clinically-motivated features are derived:
 
-| Phase | Method | Tool |
-|-------|--------|------|
-| Statistical Summaries | Mean, Median, Std, Skewness, Kurtosis | Pandas + SciPy |
-| Correlation Analysis | Pearson correlation matrix + heatmap | Seaborn |
-| Outlier Detection | IQR method + Boxplots | Matplotlib |
-| Distribution Analysis | KDE plots + histograms | Seaborn |
-| Pattern Mining | Director, country, genre, growth trends | Pandas + Matplotlib |
+| Feature | Derivation | Rationale |
+|---|---|---|
+| `age_group` | Age bucketed into 4 risk tiers | Clinical protocols stratify risk by decade |
+| `hr_reserve` | `(220 - age) - thalach` | Unused cardiac capacity; low reserve = poor fitness |
+| `silent_ischemia` | Flag for `cp == 0` | Asymptomatic presentation is paradoxically highest risk |
+| `hypertension` | Flag for `trestbps >= 140` | Stage-2 hypertension is a primary cardiovascular risk factor |
+| `st_risk` | `oldpeak × slope` | Composite ST-segment severity score |
 
-### Statistical Findings
+### 3. Models Trained
 
-| Metric | Movies | TV Shows |
-|--------|--------|----------|
-| Mean Duration | 100 min | 1.8 seasons |
-| Median Duration | 98 min | 1 season |
-| Std Deviation | 28 min | 1.6 seasons |
-| Skewness | 0.203 ✅ Normal | 3.419 ⚠️ Right-skewed |
-| Kurtosis | 2.294 | 16.134 ⚠️ Heavy tails |
+All models are wrapped in **sklearn Pipelines** (StandardScaler → Classifier) to prevent data leakage during cross-validation.
 
-### Correlation Matrix Highlights
+| Model | Notes |
+|---|---|
+| Logistic Regression | Interpretable linear baseline |
+| Random Forest | Non-linear ensemble, robust to outliers |
+| XGBoost | Gradient boosting; state-of-the-art for tabular data |
 
-| Feature Pair | Correlation | Interpretation |
-|-------------|:-----------:|----------------|
-| `type` ↔ `duration_value` | **0.885** | Movies & TV Shows occupy completely separate duration spaces |
-| `release_year` ↔ `duration` | **-0.249** | Newer content trends shorter |
-| `release_year` ↔ `type` | **-0.182** | Older Netflix titles lean toward Movies |
-| All other pairs | < 0.15 | Negligible relationships |
+### 4. Evaluation
+- 5-Fold Stratified Cross-Validation (AUC-ROC)
+- Test set: Accuracy, F1-Score, AUC-ROC
+- ROC curves (all models overlaid)
+- Confusion matrices
+- Per-class classification report
 
-### Outlier Analysis
-
-| Column | Outliers | % | Explanation |
-|--------|:--------:|:---:|-------------|
-| `duration_value` | 2 | 0.02% | Negligible — data is clean |
-| `release_year` | 719 | 8.17% | Classic films pre-2004 added to library |
-| `year_added` | 56 | 0.64% | Early Netflix titles before 2015 |
-
-### EDA Visualizations
-
-![Correlation Heatmap](eda_correlation_heatmap.png)
-![Distributions](eda_distributions.png)
-![Patterns](eda_patterns.png)
-![Outliers](eda_outlier_boxplots.png)
-
-### Key Conclusions
-
-1. **Growth Explosion** — Netflix grew 94,350% from 2010 to 2019, peaking
-   at 2,016 titles added in a single year, driven by international expansion.
-
-2. **Mature Audience Focus** — TV-MA dominates ratings; Kids content
-   represents only 23.4% of the entire library.
-
-3. **Movie Distribution is Healthy** — Skewness of 0.203 confirms movies
-   follow a near-normal runtime distribution centered around 99 minutes.
-
-4. **TV Shows Are Heavily Skewed** — Skewness of 3.419 and kurtosis of
-   16.134 reveal most shows run for just 1 season, with very few
-   long-running outliers pulling the distribution right.
-
-5. **Legacy Content Strategy** — 8.17% of titles are classic pre-2004
-   films, confirming Netflix deliberately blends new originals with
-   timeless catalog content.
-
-6. **Top Creator** — Rajiv Chilaka leads with 19 titles, primarily
-   children's animation — a niche but consistent production pipeline.
+### 5. Explainability
+- **Random Forest Gini importance** — global feature ranking
+- **SHAP TreeExplainer (XGBoost)** — beeswarm summary plot + mean impact bar chart
 
 ---
 
-## 🔍 Overall Project Insights
+## 🏆 Results
 
-> Across all three tasks, three themes consistently emerge:
+> Exact values depend on your environment. Typical results on this dataset:
 
-**1. Netflix is a Movie-First Platform shifting toward TV**
-The 70/30 Movie-to-Show ratio is narrowing year over year,
-with TV Show additions growing faster post-2018.
+| Model | Test Accuracy | F1-Score | AUC-ROC |
+|---|---|---|---|
+| Logistic Regression | ~0.85 | ~0.86 | ~0.91 |
+| Random Forest | ~0.87 | ~0.88 | ~0.92 |
+| **XGBoost** | **~0.90** | **~0.90** | **~0.93** |
 
-**2. International Content is the Growth Engine**
-International Movies is the #1 genre. USA, India, and UK lead
-production — but 748 countries contribute content globally.
-
-**3. Data Quality was High but Strategic**
-Missing directors (30%) reflect real-world data — many titles
-are stand-up specials or documentaries with no traditional director.
-The data wasn't messy by accident; it reflects Netflix's diverse
-content formats.
+XGBoost consistently achieves the highest AUC-ROC and is the recommended model.
 
 ---
 
-## 🛠️ Tech Stack
+## 🔍 Key Findings
 
-| Tool | Version | Purpose |
-|------|---------|---------|
-| Python | 3.10 | Core language |
-| Pandas | 2.x | Data manipulation & cleaning |
-| NumPy | 1.x | Numerical operations |
-| Matplotlib | 3.x | Visualizations & dashboards |
-| Seaborn | 0.x | Statistical charts & heatmaps |
-| Scikit-learn | 1.x | ML models & evaluation metrics |
-| SciPy | 1.x | Statistical analysis |
-| Google Colab | — | Cloud notebook environment |
+- **Chest pain type (`cp`)** is the strongest predictor. Asymptomatic patients (`cp=0`) show paradoxically high disease rates — a phenomenon known as *silent ischemia*.
+- **Max heart rate (`thalach`)** is significantly lower in disease patients, reflecting reduced cardiovascular reserve.
+- **Number of blocked vessels (`ca`)** provides direct anatomical evidence of coronary artery disease.
+- **ST depression (`oldpeak`)** is a well-validated ECG ischemia marker and a top SHAP driver.
+- The engineered **`hr_reserve`** feature adds meaningful predictive signal beyond the original 13 features.
 
 ---
 
-## 🚀 How to Run
+## ⚙️ Setup & Usage
 
-1. Clone this repository
+### Requirements
+```
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+xgboost
+shap
+jupyter
+```
+
+Install all dependencies:
 ```bash
-git clone https://github.com/yourusername/netflix-data-science.git
-cd netflix-data-science
+pip install -r requirements.txt
 ```
 
-2. Install dependencies
+### Run the Notebook
 ```bash
-pip install pandas numpy matplotlib seaborn scikit-learn scipy
+git clone https://github.com/Sushit-prog/heart-disease-prediction.git
+cd heart-disease-prediction
+jupyter notebook heart_disease_prediction.ipynb
 ```
 
-3. Download the dataset from
-[Kaggle](https://www.kaggle.com/datasets/shivamb/netflix-shows)
-and place `netflix_titles.csv` in the root folder
-
-4. Open notebooks in order
-Task1.ipynb → Task2.ipynb → Task3.ipynb
-5. Run all cells (`Runtime → Run All` in Google Colab)
+> The notebook downloads the dataset automatically from a public URL — no manual download needed. XGBoost and SHAP are also installed automatically on first run if not present.
 
 ---
 
-## 👤 Author
+## 🚀 Potential Extensions
 
-**Sushit**
-Thiranex Internship Program 2026 — Data Science & AI Track
-
-<p>
-  <a href="https://github.com/yourusername">
-    <img src="https://img.shields.io/badge/GitHub-Profile-181717?style=flat-square&logo=github"/>
-  </a>
-  <a href="https://linkedin.com/in/yourprofile">
-    <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin"/>
-  </a>
-</p>
+- Hyperparameter optimization with **Optuna** (Bayesian search)
+- Ensemble stacking with a Logistic Regression meta-learner
+- Probability calibration (Platt scaling) for clinical risk thresholds
+- SMOTE oversampling for larger, imbalanced production datasets
+- REST API deployment via **FastAPI + Docker**
+- Production drift monitoring with **Evidently AI**
 
 ---
 
-<p align="center">
-  Built with 🔴 and lots of data — Thiranex Internship 2026
-</p>
+## ⚠️ Limitations
+
+- Small dataset (303 patients) — real clinical deployment requires 10,000+ records
+- Single-centre bias (Cleveland Clinic) — may not generalize across demographics
+- Cross-sectional data only — no longitudinal follow-up
+- Missing confounders (BMI, smoking history, family history, medications)
+
 ---
+
+## 📚 References
+
+- Detrano, R. et al. (1989). *International application of a new probability algorithm for the diagnosis of coronary artery disease.* American Journal of Cardiology.
+- UCI ML Repository: [Heart Disease Dataset](https://archive.ics.uci.edu/ml/datasets/heart+disease)
+- Lundberg, S. M., & Lee, S. I. (2017). *A Unified Approach to Interpreting Model Predictions.* NeurIPS.
+- WHO Cardiovascular Disease Fact Sheet (2023): [who.int](https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds))
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+<p align="center">Built as part of a Data Science internship project | Domain: Healthcare</p>
